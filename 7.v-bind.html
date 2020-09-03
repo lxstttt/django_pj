@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app1">
+
+    <img :src="src" alt="" :title="title" :class="{aa:showCss}" width="300px">
+    <input type="button" value="切换图片" @click="change_pic">
+</div>
+
+<script src="js/vue.min.js"></script>
+<script>
+
+    new Vue({
+        el: '#app1',
+        data: {
+            title:'海',
+            src:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1599150831052&di=754196ef74dce4b1a5f53b7eec3189a7&imgtype=0&src=http%3A%2F%2Fi1.hdslb.com%2Fbfs%2Farchive%2F6d04fd2f003c5fa0743cbb96509e4c703e6bf0dc.jpg',
+            showCss:true,
+        },
+        methods:{
+            change_pic(){
+                this.src = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1599150937306&di=d74a4fc17148dd542246e015456128e6&imgtype=0&src=http%3A%2F%2Fdpic.tiankong.com%2F05%2Fai%2FQJ6138694416.jpg'
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

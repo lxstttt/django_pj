@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app1">
+
+    <span>{{msg}}</span><br>
+    <span><input type="button" value="点击将msg变为指定值" @click="change_msg(222,'xxx')"></span>
+</div>
+
+<script src="js/vue.min.js"></script>
+<script>
+
+    new Vue({
+        el: '#app1',
+        data: {
+            msg:'999',
+        },
+        methods:{
+            change_msg(msg,name){
+                this.msg = msg;
+                console.log(name);
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

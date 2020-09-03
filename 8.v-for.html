@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app1">
+    <h3>{{user.name}}</h3>
+    <h3>{{arr[0]}}</h3>
+    <span v-for="(key,value,index) in user">
+        {{key}} : {{value}} --{{index}}<br>
+    </span>
+    <!--  数组  -->
+    <ul>
+        <li v-for="(city,index) in arr">{{index+1}} :{{city}}</li>
+    </ul>
+    <!--  数组中对象  -->
+    <ul>
+        <li v-for="(value,index) in users" :key="value.id">
+            {{index+1}}---{{value.name}}----{{value.age}}---{{value.content}}
+        </li>
+    </ul>
+</div>
+
+<script src="js/vue.min.js"></script>
+<script>
+
+    new Vue({
+        el: '#app1',
+        data: {
+            user: {name: "小黑", age: 23, bir: "2012-12-12"},
+            arr: ["河南", "北京", "四川"],
+            // 数组中包含对象的遍历
+            users: [
+                {id: 1, name: "小黄", age: 23, content: "我是小黄"},
+                {id: 2, name: "小红", age: 23, content: "我是小红"},
+                {id: 3, name: "小绿", age: 23, content: "我是小绿"},
+            ]
+        },
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app1">
+
+    <span>{{msg}}</span><br>
+    <input type="button" value="点击减小" @click="change_number"> //推荐
+    <input type="button" value="点击增加" v-on:click="change_number2">
+    <input type="button" value="点击增加10" v-on:click="change_number3">
+
+</div>
+
+<script src="js/vue.min.js"></script>
+<script>
+
+    new Vue({
+        el: '#app1',
+        data: {
+            msg:77,
+        },
+        methods:{
+            change_number:function () {
+                this.msg--;
+            },
+            change_number2:function () {
+                this.msg++;
+            },
+            change_number3(){
+                this.msg +=10;
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

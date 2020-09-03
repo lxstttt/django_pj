@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app1">
+    {{msg}}
+    <!-- v-text="data中定义好的变量" 会覆盖标签原有的值  -->
+    <span v-text="msg">欢迎来到未来</span>
+    <span v-text="msg1">欢迎来到未来</span>
+    <!-- v-html="显示超链接  -->
+    <span v-html="msg1"></span>
+</div>
+
+<script src="js/vue.min.js"></script>
+<script>
+
+    new Vue({
+        el:'#app1',
+        data:{
+            msg:'欢迎来到嚎哭深渊',
+            msg1:'<a href=\"\">百知教育</a>',
+        },
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app1">
+
+    <input type="text" v-model="msg"> <input type="button" value="发表留言" @click="push_syn">
+    <hr>
+    <span v-for="(value,index) in notebook">
+        {{value}} <input type="button" value="删除" @click="del(index)"><br>
+    </span>
+    <hr>
+    <span>总数量 : {{notebook.length}}条</span>
+    <input type="button" value="清空" @click="del_all" v-show="notebook.length">
+</div>
+
+<!--
+实现思路：
+    1. 展示记事本
+        a.将所有的数据绑定为vue的实例
+        b.遍历vue实例中的数据并展示到页面
+    2. 发表留言
+        a.绑定事件到添加留言的按钮上
+        b.在函数的输入框中获取输入的数据
+        c.将获取到数据添加到留言板中
+    3. 删除
+        a.绑定删除事件 b.通过事件的参数确定要删除的行 c.在函数中根据传递的参数完成删除
+    4. 总数量
+-->
+
+<script src="js/vue.min.js"></script>
+<script>
+
+    new Vue({
+        el: '#app1',
+        data: {
+            notebook:['面朝大海','春暖花开'],
+            msg:'',
+        },
+        methods:{
+            push_syn(){
+                let msg = this.msg;
+                if (msg){
+                    this.notebook.unshift(this.msg);
+                }
+                this.msg ='';
+            },
+            del(index){
+                this.notebook.splice(index,1);
+            },
+            del_all(){
+                this.notebook = [];
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

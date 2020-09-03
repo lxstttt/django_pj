@@ -6,5 +6,35 @@
 </head>
 <body>
 
+<div id="app1">
+    <span>{{msg}}</span>
+    <span>{{user}}</span>
+    <span>{{addr[2]}}</span>
+    <span>{{color.bdd}}</span>
+    <span>{{account[0].name}}</span>
+
+    <!-- 插值表达式调用相关方法 {{}} -->
+    {{msg2.toUpperCase()}}
+    {{msg1 / 200}}
+</div>
+
+
+<script src="js/vue.min.js"></script>
+<script>
+        new Vue({
+        el:"#app1",
+        data:{
+            msg:'2004',
+            user:'lxsttt',
+            pwd:'123456',
+            addr:['北京','上海','天津'],
+            color:{bdd:'red',yjj:'yellow'},
+            account:[{name:'小白',pwd:'1211'},{name:'小天',pwd:'1233'}],
+            msg1:2000,
+            msg2:'why so cool',
+        },
+    })
+</script>
+
 </body>
 </html>

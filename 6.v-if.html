@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app1">
+
+    <h3 v-if="is">面朝大海</h3>
+    <h3 v-else>春暖花开</h3>
+    <input type="button" value="点击试试" @click="change_char">
+</div>
+
+<script src="js/vue.min.js"></script>
+<script>
+
+    new Vue({
+        el: '#app1',
+        data: {
+            is:true,
+        },
+        methods:{
+            change_char(){
+                this.is = !this.is;
+            }
+        }
+    })
+
+</script>
+</body>
+</html>
