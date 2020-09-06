@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app1">
+
+    <input type="text" v-model="username">
+    父组件：{{username}}
+
+    <hr>
+    <com1 :name="username"></com1>
+</div>
+
+<script src="js/vue.min.js"></script>
+<script>
+
+    let com = {
+        template:`
+            <div>用户名：{{name2}}</div>
+        `,
+        props:['name2'] //组件中的数据name,props的name和组件标签中的属性名保持一致
+    }
+
+// vue也是一个特殊的组件2：由于组件1直接注册到了组件2里面，所以组件2是组件1的父组件
+    new Vue({
+        el: '#app1',
+        data: {
+            username:'',
+        },
+        components:{
+            com1:com
+        }
+    })
+
+</script>
+</body>
+</html>

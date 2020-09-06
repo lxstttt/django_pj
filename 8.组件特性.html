@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app1">
+
+    <app2></app2>
+</div>
+
+<script src="js/vue.min.js"></script>
+<script>
+
+    let app1 = {
+        template:`
+            <span>{{count}}
+                <button @click="change">点击</button>
+            </span>
+        `,
+        data:function(){
+            return {
+                count:100
+            }
+        },
+        methods:{
+            change(){
+                this.count += 100;
+            }
+        },
+        created:function () {
+            // 数据赋值完成后触发
+            alert('again')
+        }
+    }
+
+    Vue.component('app2',app1)
+
+    new Vue({
+        el: '#app1',
+        data: {},
+    })
+
+</script>
+</body>
+</html>

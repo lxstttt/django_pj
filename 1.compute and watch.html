@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app1">
+
+    <p @click="click_num">{{num}}</p>
+<!--    <p>十位：{{ parseInt(num/10) }}</p>-->
+<!--    <p>个位：{{num%10}}</p>-->
+    <p>十位：{{ shiWei }}</p>
+    <p>个位：{{geWei}}</p>
+    <hr>
+    十位：<input type="number" v-model="shiWei" max="9" min="0"><br>
+    个位：<input type="number" v-model="geWei" max="9" min="0"><br>
+    结果：<span>{{shiWei*10 + +geWei}}</span>
+    结果：<span>{{rst}}</span>
+</div>
+
+<script src="js/vue.min.js"></script>
+<script>
+
+    new Vue({
+        el: '#app1',
+        data: {
+            num:98,
+            shiWei:'',
+            geWei:'',
+        },
+        methods:{
+            click_num(){
+                this.num = this.num - 3;
+            }
+        },
+        computed:{
+            rst(){
+                return this.shiWei*10 + +this.geWei;
+            }
+        },
+        watch:{
+            // 代表要监听data中num值的改变
+            num(){
+                this.shiWei = parseInt(this.num/10);
+                this.geWei = this.num % 10;
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

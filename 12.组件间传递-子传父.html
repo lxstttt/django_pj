@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app1">
+
+    用户名：{{username}}
+    <hr>
+    <com1 @btn="click_me"></com1>
+</div>
+
+<script src="js/vue.min.js"></script>
+<script>
+
+    let com = {
+        template:`
+            <div>这是子组件：
+                <button @click="clickme">点击</button>
+            </div>
+        `,
+        methods:{
+            clickme(){
+                this.$emit("btn", "red", "22px");
+                console.log('hello');
+            }
+        }
+    }
+
+    new Vue({
+        el: '#app1',
+        data: {
+            username:'小白',
+        },
+        components:{
+            com1:com
+        },
+        methods:{
+            click_me(color,size){
+                console.log(color,size);
+                this.username = color;
+            }
+    }
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app1">
+
+</div>
+
+<script src="js/vue.min.js"></script>
+<script>
+
+    new Vue({
+        el: '#app1',
+        data: {},
+    })
+
+    let app1 = {
+        color:"white",
+        app:function () {
+            console.log(this.color)
+        }
+    }
+    app1.app()
+
+    let app2 = {
+        color:"blue",
+        app:function () {
+            // 回调函数中this指向会被改变  不再指向当前student实例了
+            setTimeout(function () {
+                console.log(this.color);
+            },1000)
+        }
+    }
+    app2.app()
+
+    let app3 = {
+        color:'blue',
+        app:function () {
+            setTimeout(() => {
+                console.log(this.color);
+            },2000)
+        }
+    }
+    app3.app()
+
+</script>
+</body>
+</html>
