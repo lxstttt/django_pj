@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app1">
+
+    <span>---首页---</span><br>
+    <router-link to="/com1">第一页</router-link>
+    <router-link to="/com2">第二页</router-link>
+
+    <hr>
+
+    <router-view></router-view>
+
+</div>
+
+<script src="js/vue.min.js"></script>
+<script src="js/vue-router.3.0.1.js"></script>
+<script>
+
+    let com1 = {
+        template: `
+            <div>这是组件1</div>
+        `
+    }
+
+    let com2 = {
+        template: `
+            <div>这是组件2</div>
+        `
+    }
+
+    let myRouter = new VueRouter({
+        routes: [
+            {path: "/com1", component: com1},
+            {path: "/com2", component: com2},
+            {path: "/", redirect: "/com1"},
+        ]
+    })
+
+    new Vue({
+        el: '#app1',
+        data: {},
+        router:myRouter,
+    })
+
+</script>
+</body>
+</html>

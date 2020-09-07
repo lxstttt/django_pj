@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app1">
+
+    <router-view></router-view>
+</div>
+
+<script src="js/vue.min.js"></script>
+<script src="js/vue-router.3.0.1.js"></script>
+<script>
+
+    let com1 = {
+        template:`
+            <div>这是组件1
+                <button @click="go_user">点击跳转到用户界面</button>
+</div>
+        `,
+        methods:{
+            go_user(){
+                this.$router.push('/com2/xiaobai')
+                // this.$router.push('/com2?id=3')
+            }
+        }
+    }
+
+    let com2 = {
+        template: `
+            <div>这是组件2
+                接收组件1传来的id---> {{$route.query.id}}  //通过'/com?id=3'传
+                接收组件1传来的id---> {{$route.params.id}}---->{{$route.path}}
+                <hr>
+                <button @click="go_ahead">点击返回上一页</button>
+</div>
+        `,
+        methods: {
+            go_ahead(){
+                $router.push('/')
+            }
+        }
+    }
+
+    let myRouter = new VueRouter({
+        routes:[
+            {path:'/com1',component:com1},
+            {path:'/com2/',component:com2},
+            {path:'/',redirect:'/com1'},
+        ]
+    })
+    new Vue({
+        el: '#app1',
+        data: {},
+        router:myRouter,
+    })
+
+</script>
+</body>
+</html>

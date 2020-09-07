@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app1">
+
+    <input type="text" v-model="msg">
+    <button @click="add">添加留言</button>
+    <br>
+    <ul>
+        <li v-for="(msg,index) in msg_list">{{msg}}</li>
+    </ul>
+</div>
+
+<script src="js/vue.min.js"></script>
+<script src="js/vue-router.3.0.1.js"></script>
+<script>
+
+    new Vue({
+        el: '#app1',
+        data: {
+            msg:'',
+            msg_list:localStorage.msgs ? JSON.parse(localStorage.msgs) : [],
+        },
+        methods:{
+            add(){
+                let msg = this.msg;
+                if(msg){
+                    this.msg_list.push(this.msg);
+                    localStorage.msgs = JSON.stringify(this.msg_list);
+                    this.msg = '';
+                }
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app1">
+
+    <router-view></router-view>
+</div>
+
+<script src="js/vue.min.js"></script>
+<script src="js/vue-router.3.0.1.js"></script>
+<script>
+
+    let com1 = {
+        template: `
+            <div>这是组件1
+                 <router-link to="/second/?id=2&name=lilei">访问id为2的下一页</router-link>
+            </div>
+        `
+    }
+
+    let com2 = {
+        template: `
+            <div>这是组件2
+                接收id为1的页面传来的参数---->: {{$route.query.id}},{{$route.query.name}}
+            </div>
+        `
+    }
+
+    let myRouter = new VueRouter({
+        routes:[
+            {path: '/first', component: com1},
+            {path: '/second', component: com2},
+            {path: '/', redirect: '/first'},
+        ]
+    })
+
+    new Vue({
+        el: '#app1',
+        data: {},
+        router:myRouter,
+    })
+
+</script>
+</body>
+</html>

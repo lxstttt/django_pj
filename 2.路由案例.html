@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app1">
+
+    <span>---首页---</span><br>
+    <router-link to="/index">去往主页</router-link>
+    <router-link to="/user">用户列表</router-link>
+    <hr>
+    <router-view></router-view>
+</div>
+
+<script src="js/vue.min.js"></script>
+<script src="js/vue-router.3.0.1.js"></script>
+<script>
+
+    let com1 = {
+        template:`
+            <div>欢迎进入主页</div>
+        `
+    }
+
+    let com2 = {
+        template: `
+            <div>
+                <h3>用户列表页</h3>
+                <table border="2" cellpadding="0">
+                    <tr>
+                        <td>ID</td>
+                        <td>姓名</td>
+                        <td>生日</td>
+                    </tr>
+                    <tr v-for="user in users" :key="user.id">
+                        <td>{{user.id}}</td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.bir}}</td>
+                    </tr>
+                </table>
+            </div>
+        `,
+        data: function () {
+            return {
+                users:[
+                    {id: 1, username:"小黑", bir: "2012-12-12"},
+                    {id: 2, username:"小白", bir: "2013-12-12"},
+                    {id: 3, username:"小红", bir: "2014-12-12"},
+                ]
+            }
+        }
+    }
+
+    let myRouter = new VueRouter({
+        routes:[
+            {path: '/index',component:com1},
+            {path: '/user',component:com2},
+        ]
+    })
+
+    new Vue({
+        el: '#app1',
+        data: {},
+        router:myRouter,
+    })
+
+</script>
+</body>
+</html>

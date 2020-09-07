@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app1">
+    <span>---</span><br>
+    <router-link to="/index">访问树洞主页</router-link>
+    <router-link to="/adm_inf">访问信息</router-link>
+    <hr>
+    <!--  指定路由对应的组件出现的位置  -->
+    <router-view></router-view>
+</div>
+
+<script src="js/vue.min.js"></script>
+<script src="js/vue-router.3.0.1.js"></script>
+<script>
+
+    let first = {
+        template: `
+            <div>欢迎进入树洞</div>
+        `
+    }
+
+    let second = {
+        template: `
+            <div>信息管理</div>
+        `
+    }
+    let myRouter = new VueRouter({
+        routes:[
+            {path: '/index',component:first},
+            {path: '/adm_inf',component:second},
+        ]
+    })
+
+    new Vue({
+        el: '#app1',
+        data: {},
+        router:myRouter,
+    })
+
+</script>
+</body>
+</html>

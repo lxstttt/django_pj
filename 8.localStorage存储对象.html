@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app1">
+
+</div>
+
+<script src="js/vue.min.js"></script>
+<script src="js/vue-router.3.0.1.js"></script>
+<script>
+
+    let s1 = localStorage;
+    s1.name = 'xiaobai'
+    console.log(typeof s1.name)
+
+    s1.des = {
+        name:'baiyang',
+        size:'100',
+        heigiht:'100',
+    }
+
+    let s2 = {
+        id:1,
+        name:'xiaol',
+        age:22,
+    }
+
+    console.log(typeof s1.des)
+    console.log(s1.age)
+
+    // 储存对象类型的数据，需要将数据进行序列化
+    s1.description = JSON.stringify(s2);
+
+    // 取出数据 反序列成对象
+    let s3 = JSON.parse(s1.description)
+    console.log(typeof s3)
+
+
+
+
+    new Vue({
+        el: '#app1',
+        data: {},
+    })
+
+</script>
+</body>
+</html>
