@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app1">
+
+    <s1></s1>
+    <hr>
+    <s2></s2>
+</div>
+
+<script src="js/vue.min.js"></script>
+<script src="js/vue-router.3.0.1.js"></script>
+<script src="js/vuex.3.0.1.js"></script>
+<script>
+
+    let store1 = {
+        template:`
+            <div>这是第一个组件
+                <button @click="add_data">点击添加</button>
+            </div>
+        `,
+        methods:{
+            add_data(){
+                let d1 = {name:'xiaobai',pwd:123445};
+                this.$store.commit('add_data');
+            }
+        }
+    }
+
+    let store2 = {
+        template: `
+            <div>这是第二个组件
+                ----> : {{$store.state.user}}
+            </div>
+        `,
+    }
+
+    let myStore = new Vuex.Store({
+        state:{
+            count:11,
+        },
+        mutations:{
+            add_data(state){
+
+            }
+        }
+    })
+
+
+    new Vue({
+        el: '#app1',
+        data: {},
+        components:{
+            s1:store1,
+            s2:store2,
+        },
+        store:myStore,
+    })
+
+</script>
+</body>
+</html>

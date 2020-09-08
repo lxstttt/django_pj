@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app1">
+
+    <s1></s1>
+    <hr>
+    <s2></s2>
+</div>
+
+<script src="js/vue.min.js"></script>
+<script src="js/vue-router.3.0.1.js"></script>
+<script src="js/vuex.3.0.1.js"></script>
+<script>
+    let store1 = {
+        template:`
+            <div>这是第一个组件
+                <button @click="add_data">点击改变数据</button>
+            </div>
+        `,
+        methods:{
+            add_data(){
+                this.$store.commit('add_data');
+            }
+        }
+    }
+
+    let store2 = {
+        template: `
+            <div>这是第二个组件
+                ---->count数据 : {{$store.state.count}}
+                <span>获取count数据的相反数--->{{$store.getters.change_count}}</span>
+            </div>
+        `,
+    }
+    let myStore = new Vuex.Store({
+        state: {
+            count: 1,
+        },
+        mutations: {
+            add_data: function (state) {
+                state.count++;
+            }
+        },
+        // getters与state的关系  data与computed
+        getters: {
+            // 返回count的相反数
+            change_count: function (state) {
+                return 0 - state.count;
+            }
+        }
+    })
+    new Vue({
+        el: '#app1',
+        data: {},
+        components:{
+            s1:store1,
+            s2:store2,
+        },
+        store:myStore,
+    })
+
+</script>
+</body>
+</html>

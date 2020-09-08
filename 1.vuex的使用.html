@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app1">
+
+    <store1></store1>
+    <hr>
+    <store2></store2>
+</div>
+
+<script src="js/vue.min.js"></script>
+<script src="js/vue-router.3.0.1.js"></script>
+<script src="js/vuex.3.0.1.js"></script>
+<script>
+    let store1 = {
+        template:`
+            <div>这是一个组件
+                <button @click="change">点击</button>
+            </div>
+        `,
+        methods:{
+            change(){
+                // 在函数中向状态机提交一个变化  动作
+                this.$store.commit('change_num');
+            }
+        }
+    }
+
+    let store2 = {
+        template: `
+            <div>这是第二个组件
+                点击组件1的按钮，让组件2显示的数字变大--->:{{$store.state.num}}
+            </div>
+        `
+    }
+
+    let myStore = new Vuex.Store({
+        // 状态  共享的数据
+        state:{
+            num:3,
+        },
+        mutations:{
+            change_num:function (state) {
+                if(state.num<=10){
+                    state.num++;
+                }
+            }
+        }
+    })
+
+    new Vue({
+        el: '#app1',
+        data: {},
+        components:{
+            store1:store1,
+            store2:store2,
+        },
+        store:myStore,
+    })
+
+</script>
+</body>
+</html>
