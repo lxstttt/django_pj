@@ -1,7 +1,9 @@
 <template>
     <div>
-        用户详情页面:detail---> : {{$route.query.id}}
-        <h4>用户详情展示</h4>
+        <span>---用户详情页面---</span><br>
+        <span>id : {{JSON.parse($route.params.user).id}}</span><br>
+        <span>姓名：{{JSON.parse($route.params.user).username}}</span><br>
+        <span>bir: {{JSON.parse($route.params.user).bir}}</span><br>
 
         <br>
         <button @click="re_home">返回主页</button>
@@ -17,6 +19,11 @@
 <script>
     export default {
         name: "user_detail",
+        data:function(){
+            return {
+                users:JSON.parse(localStorage.users)
+            }
+        },
         methods:{
             re_home(){
                 this.$router.push('/home');

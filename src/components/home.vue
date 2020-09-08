@@ -34,12 +34,14 @@
                 }
             },
             del_note(index){
-                localStorage.removeItem(this.msg);
                 this.msg_list.splice(index,1);
+                localStorage.msgs = JSON.stringify(this.msg_list);
             },
             del_all(){
-                localStorage.clear();
-                this.msg_list = [];
+                if(confirm('确定要清空吗')){
+                    localStorage.clear();
+                    this.msg_list = [];
+                }
             }
         }
     }

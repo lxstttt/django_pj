@@ -12,9 +12,14 @@
                         <td>{{user.id}}</td>
                         <td>{{user.username}}</td>
                         <td>{{user.bir}}</td>
-                        <td><a href="javascript:(0);" @click="del_user(index)">删除</a>|<router-link :to="`/user_detail?id=${user.id}`">用户详情</router-link></td>
+                        <td><a href="javascript:(0);" @click="del_user(index)">删除</a>|<router-link :to="`/user_detail/${JSON.stringify(user)}`">用户详情</router-link></td>
                     </tr>
                 </table>
+        <br>
+        id：<input type="text" v-model="id"><br>
+        姓名：<input type="text" v-model="username"><br>
+        生日：<input type="text" v-model="bir"><br>
+        <button @click="add_user">添加用户</button>
     </div>
 </template>
 
@@ -23,17 +28,26 @@
         name: "user",
         data:function () {
             return {
-                users:[
-                    {id: 1, username:"小黑", bir: "2012-12-12"},
-                    {id: 2, username:"小白", bir: "2013-12-12"},
-                    {id: 3, username:"小红", bir: "2014-12-12"},
-                ]
+                id:'',
+                username:'',
+                bir:'',
+                users:localStorage.users ? JSON.parse(localStorage.users):[],
             }
         },
         methods:{
             del_user(index){
                 console.log(index);
-                this.users.pop(index);
+                this.users.splice(index,1)
+                localStorage.users = JSON.stringify(this.users)
+            },
+            add_user(){
+              if(this.id && this.username && this.bir){
+                  this.users.push({id:this.id,username:this.username,bir:this.bir});
+                  localStorage.users = JSON.stringify(this.users);
+                  this.id='';
+                  this.username='';
+                  this.bir='';
+              }
             }
         }
     }
