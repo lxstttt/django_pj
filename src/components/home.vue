@@ -38,10 +38,8 @@
                 localStorage.msgs = JSON.stringify(this.msg_list);
             },
             del_all(){
-                if(confirm('确定要清空吗')){
-                    localStorage.clear();
-                    this.msg_list = [];
-                }
+                localStorage.clear();
+                this.msg_list = [];
             }
         }
     }

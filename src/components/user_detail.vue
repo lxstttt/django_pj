@@ -19,11 +19,6 @@
 <script>
     export default {
         name: "user_detail",
-        data:function(){
-            return {
-                users:JSON.parse(localStorage.users)
-            }
-        },
         methods:{
             re_home(){
                 this.$router.push('/home');
